@@ -15,11 +15,13 @@
   </p>
   <p class="simple-text">
     Music Genres: <span class="dynamic-text"
-      >{selectedNode.genres.join(", ")}</span
+      >{selectedNode.music_genres.join(", ")}</span
     >
   </p>
   <p class="simple-text">
-    Sports: <span class="dynamic-text">{selectedNode.sports.join(", ")}</span>
+    Favorite Sports: <span class="dynamic-text"
+      >{selectedNode.fav_sports.join(", ")}</span
+    >
   </p>
   <p class="simple-text">
     Languages: <span class="dynamic-text"

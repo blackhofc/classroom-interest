@@ -3,21 +3,24 @@
   import { Network } from "vis-network";
 
   // Components
-  import PersonCard from "./components/Person.svelte";
-  // import Filter from './components/Selector.svelte';
   import COLORS from "./utils/constants.js";
-  import { Section, Gender, Language } from "./utils/filters.js";
+  import Select from "svelte-select";
+  import PersonCard from "./components/Person.svelte";
 
-  // Import the JSON data
+  import { groupStudents, filters } from "./utils/filters.js";
+
+  // Import the parsed students data
   import students from "./students.json";
-  import { select } from "d3";
 
   let selectedNode = null;
 
   var nodes = [];
 
+  let justValue;
+
+  // Load student nodes with its values
   students.forEach((person) => {
-    const { id, name, age, gender } = person;
+    const { name, age, gender } = person;
     nodes.push({
       ...person,
       label: name,
@@ -26,31 +29,9 @@
     });
   });
 
-  function groupEdges(filter) {
-    switch (filter) {
-      case "age":
-        Gender(students);
-        break;
-      case "gender":
-        Gender(students);
-        break;
-      case "genres":
-        Language(students);
-        break;
-      case "sports":
-        Language(students);
-        break;
-      case "language":
-        Language(students);
-        break;
-      default:
-        Section(students);
-        break;
-    }
-  }
-
+  // Draw canvas with current filter selected 'justValue'
   function draw() {
-    var edges = Section(students);
+    var edges = groupStudents(students, justValue);
 
     // Container to hold the network
     const container = document.getElementById("students-network");
@@ -66,7 +47,7 @@
         },
       },
       edges: {
-        color: "#F4F7FF", // Link color
+        color: "#74747A", // Link color
         hoverWidth: 0,
       },
       physics: {
@@ -94,10 +75,21 @@
         selectedNode = node;
       }
     });
+
+    // Adjust students network on window resize
+    window.onresize = function () {
+      setInterval(function () {
+        network.fit();
+      }, 2000);
+    };
   }
 
+  // On website mounted
   onMount(() => {
-    selectedNode = nodes.find((student) => student.id === 6);
+    // Default node (me)
+    selectedNode = nodes.find((student) => student.id === 8);
+
+    // Draw canvas with default filter 'classroom'
     draw();
   });
 </script>
@@ -105,28 +97,38 @@
 <div class="container">
   <div class="left-div">
     <div class="title">Classroom Interests</div>
+
     {#if selectedNode}
       <div class="sub-title">Student</div>
       <PersonCard {selectedNode} />
-      <div class="dite-logo">
+    {/if}
+    <div class="dite-logo">
+      <a
+        href="https://docs.google.com/spreadsheets/d/1fiIBpUYMtGCTEr7ojjqdm8oesV9ByKjP4-8B0DEJWZg/edit?usp=sharing"
+        target="_blank"
+      >
         <img
           src="../images/ditella.png"
           alt="ditella"
           style="width: 65px; height: auto;"
         />
-      </div>
-    {/if}
+      </a>
+    </div>
   </div>
-
+  <form class="form-container">
+    <label for="foo" style="color: aliceblue;">Filter</label>
+    <Select items={filters} bind:justValue on:change={draw} />
+  </form>
   <div
     id="students-network"
-    style="width: calc(100% - 200px); height: 100vh; background: #343B46; float: right;"
+    style="width: calc(100% - 200px); height: 100vh; background: #343B46; "
   ></div>
 </div>
 
 <style>
   .container {
     display: flex;
+    position: relative;
   }
 
   .left-div {
@@ -134,15 +136,41 @@
     width: 20vw;
     height: 100vh;
     background-color: #222325;
-    justify-content: center; /* Center horizontally */
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .form-container {
+    position: absolute;
+    top: 0;
+    transform: translateX(-155%); /* Move the form back to the left */
+    width: 15vw;
+    background-color: transparent; /* Change background color to transparent */
+    padding: 10px;
+    z-index: 1; /* Set a higher z-index to prioritize clicks */
   }
 
   .title {
-    color: white;
     margin-top: 20px;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 28px;
     font-style: initial;
+    background-image: linear-gradient(to right, #e52f89, #57bdba, #f5a800);
+    color: transparent;
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: animateGradient 10s linear infinite;
+  }
+
+  @keyframes animateGradient {
+    0% {
+      background-position: 200% 50%;
+    }
+
+    100% {
+      background-position: -100% 50%;
+    }
   }
 
   .sub-title {
@@ -162,6 +190,6 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
-    text-align: center; /* Optional: Center text content */
+    text-align: center;
   }
 </style>

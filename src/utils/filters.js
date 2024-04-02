@@ -2,11 +2,11 @@ function Section(students) {
 	const edges = [];
 	const processedPairs = new Set(); // To keep track of processed pairs
 
-	// Iterate over each person
+	// Iterate over each student
 	for (let i = 0; i < students.length; i++) {
 		const person1 = students[i];
 
-		// Iterate over other persons
+		// Iterate over other students
 		for (let j = i + 1; j < students.length; j++) {
 			const person2 = students[j];
 
@@ -28,15 +28,39 @@ function Section(students) {
 	return edges;
 }
 
+function SameAge(students) {
+    const edges = [];
+
+    // Iterate over each student
+    for (let i = 0; i < students.length; i++) {
+        const person1 = students[i];
+        const age = person1.age;
+
+        // Iterate over other students to find matching ages
+        for (let j = i + 1; j < students.length; j++) {
+            const person2 = students[j];
+            if (person2.age === age) {
+                // If ages match, create an edge between them
+                edges.push({
+                    from: person2.id,
+                    to: person1.id
+                });
+            }
+        }
+    }
+
+    return edges;
+}
+
 function Gender(students) {
 	const edges = [];
 
-	// Iterate over each person
+	// Iterate over each student
 	for (let i = 0; i < students.length; i++) {
 		const person1 = students[i];
 		const gender = person1.gender;
 
-		// Iterate over other persons to find matching genders
+		// Iterate over other students to find matching genders
 		for (let j = i + 1; j < students.length; j++) {
 			const person2 = students[j];
 			if (person2.gender === gender) {
@@ -52,37 +76,37 @@ function Gender(students) {
 	return edges;
 }
 
-function Language(students) {
+function Common(students, key) {
 	const edges = [];
 
-	// Iterate over each person
+	// Iterate over each student
 	for (let i = 0; i < students.length; i++) {
 		const person1 = students[i];
-		let maxCommonLanguages = 0;
+		let maxCommon = 0;
 		let maxCommonPersonIndices = [];
 
-		// Iterate over other persons
+		// Iterate over other students
 		for (let j = i + 1; j < students.length; j++) {
 			const person2 = students[j];
 
-			// Find common languages between the two persons
-			const commonLanguages = person1.languages.filter((lang) =>
-				person2.languages.includes(lang)
+			// Find common [key] between the two students
+			const commonObject = person1[key].filter((value) =>
+				person2[key].includes(value)
 			);
 
-			// Check if the persons speak at least one language in common
-			if (commonLanguages.length > 0) {
-				// Check if the number of common languages is greater than the current maximum
-				if (commonLanguages.length > maxCommonLanguages) {
-					maxCommonLanguages = commonLanguages.length;
+			// Check if the students speak at least one [key] in common
+			if (commonObject.length > 0) {
+				// Check if the number of common [key] is greater than the current maximum
+				if (commonObject.length > maxCommon) {
+					maxCommon = commonObject.length;
 					maxCommonPersonIndices = [j];
-				} else if (commonLanguages.length === maxCommonLanguages) {
+				} else if (commonObject.length === maxCommon) {
 					maxCommonPersonIndices.push(j);
 				}
 			}
 		}
 
-		// Create edges for all persons with the same maximum number of common languages
+		// Create edges for all students with the same maximum number of common [key]
 		maxCommonPersonIndices.forEach((index) => {
 			edges.push({
 				from: person1.id,
@@ -94,8 +118,44 @@ function Language(students) {
 	return edges;
 }
 
+const filters = [
+    { value: "class", label: "Classroom" },
+    { value: "age", label: "Age" },
+    { value: "gender", label: "Gender" },
+    { value: "music_genres", label: "Music Genres" },
+    { value: "fav_sports", label: "Favorite Sports" },
+    { value: "languages", label: "Languages" },
+  ];
+
+  function groupStudents(students, filter) {
+    switch (filter) {
+      case "age":
+        filter = SameAge(students);
+        break;
+      case "gender":
+        filter = Gender(students);
+        break;
+      case "music_genres":
+        filter = Common(students, "music_genres");
+        break;
+      case "fav_sports":
+        filter = Common(students, "fav_sports");
+        break;
+      case "languages":
+        filter = Common(students, "languages");
+        break;
+      default:
+        filter = Section(students);
+        break;
+    }
+    return filter;
+  }
+
 export {
     Section,
-    Language,
-    Gender
+	SameAge,
+    Common,
+    Gender,
+	filters,
+	groupStudents
 }

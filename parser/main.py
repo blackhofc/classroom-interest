@@ -16,10 +16,12 @@ if __name__ == '__main__':
     sheet = workbook.active
 
     students = []
-    indx = 1
+    indx = 0
 
     # Access cell values
     for row in sheet.iter_rows(min_row=2, values_only=True):
+        indx += 1
+        
         if row[1] is None:
             continue
         
@@ -31,16 +33,14 @@ if __name__ == '__main__':
         languages = row[5].split(', ')
         
         students.append({
-            'id':        indx,
-            'name':      name,
-            'age':       age,
-            'gender':    gender,
-            'genres':    genres,
-            'sports':    sports,
-            'languages': languages
+            'id':           indx,
+            'name':         name,
+            'age':          age,
+            'gender':       gender,
+            'music_genres': genres,
+            'fav_sports':   sports,
+            'languages':    languages
         })
-        
-        indx += 1
         
     output(students)
     
