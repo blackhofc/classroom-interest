@@ -1,0 +1,55 @@
+/* Estilos globales */
+/* Estilos para el contenedor principal */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Centra verticalmente en la pantalla */
+}
+
+/* Estilos para cada contenedor de imagen */
+.image-container {
+    text-align: center;
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
+
+/* Estilos para cada imagen */
+.centered-image {
+    max-width: 1000px; /* Tamaño máximo de la imagen */
+    max-height: 1000px; /* Tamaño máximo de la imagen */
+    margin-right: 50px;
+}
+
+/* Estilos para el texto */
+.image-text {
+    margin-top: 50px;
+    margin-right: 50px;
+    font-weight: bold; /* Hace que el texto esté en negrita */
+    font-size: 50px; /* Tamaño del texto */
+    color: red;
+}
+
+
+/* Estilos para el título */
+.title {
+    text-align: center; /* Centra el texto horizontalmente */
+    font-size: 60px; /* Tamaño del título */
+    font-weight: bold; /* Hace que el texto esté en negrita */
+    text-decoration-line: underline;
+}
+
+/* Estilos para la tarjeta */
+.card {
+    background-color: #ffffff; /* Cambia el color de fondo aquí */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Sombra */
+    transition: 0.3s; /* Transición suave */
+    width: fit-content; /* Ancho ajustado al contenido */
+    margin: 0 auto; /* Centra la tarjeta horizontalmente */
+}
+
+body {
+    background-color: #f2f2f2; /* Cambia el color de fondo aquí */
+}
