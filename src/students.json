@@ -3,7 +3,7 @@
         "id": 1,
         "name": "Mariana Zunino",
         "age": 20,
-        "gender": "M",
+        "gender": "Mujer",
         "music_genres": [
             "R&B",
             "Pop"
@@ -14,7 +14,6 @@
             "Fórmula 1"
         ],
         "languages": [
-            "Español",
             "Inglés"
         ]
     },
@@ -22,7 +21,7 @@
         "id": 2,
         "name": "Tadeo Yapoudjian",
         "age": 20,
-        "gender": "H",
+        "gender": "Hombre",
         "music_genres": [
             "Variado"
         ],
@@ -31,15 +30,14 @@
         ],
         "languages": [
             "Frances",
-            "Inglés",
-            "Español"
+            "Inglés"
         ]
     },
     {
         "id": 3,
         "name": "Nicolas Wolodarsky Franke",
         "age": 21,
-        "gender": "H",
+        "gender": "Hombre",
         "music_genres": [
             "Variado"
         ],
@@ -49,7 +47,6 @@
         "languages": [
             "Frances",
             "Inglés",
-            "Español",
             "Portugues"
         ]
     },
@@ -57,7 +54,7 @@
         "id": 5,
         "name": "Valentina Vitetta",
         "age": 19,
-        "gender": "M",
+        "gender": "Mujer",
         "music_genres": [
             "Pop"
         ],
@@ -65,7 +62,6 @@
             "Ninguno"
         ],
         "languages": [
-            "Español",
             "Inglés"
         ]
     },
@@ -73,7 +69,7 @@
         "id": 7,
         "name": "Emiliana Verdun",
         "age": 20,
-        "gender": "NB",
+        "gender": "No Binario",
         "music_genres": [
             "R&B",
             "Pop"
@@ -83,7 +79,6 @@
             "Volley"
         ],
         "languages": [
-            "Español",
             "Inglés",
             "Frances"
         ]
@@ -92,7 +87,7 @@
         "id": 8,
         "name": "Benjamin Toledo",
         "age": 21,
-        "gender": "H",
+        "gender": "Hombre",
         "music_genres": [
             "Techno",
             "Electrónica",
@@ -102,7 +97,6 @@
             "Volley"
         ],
         "languages": [
-            "Español",
             "Inglés",
             "Portugués"
         ]
@@ -111,7 +105,7 @@
         "id": 10,
         "name": "Franco Setti",
         "age": 19,
-        "gender": "H",
+        "gender": "Hombre",
         "music_genres": [
             "Variado"
         ],
@@ -120,7 +114,6 @@
             "Fútbol"
         ],
         "languages": [
-            "Español",
             "Inglés"
         ]
     },
@@ -128,7 +121,7 @@
         "id": 12,
         "name": "Joaquín Schanz",
         "age": 21,
-        "gender": "H",
+        "gender": "Hombre",
         "music_genres": [
             "Pop-Rock"
         ],
@@ -138,7 +131,6 @@
             "Rugby"
         ],
         "languages": [
-            "Español",
             "Inglés"
         ]
     },
@@ -146,7 +138,7 @@
         "id": 13,
         "name": "Mariano Sanson",
         "age": 19,
-        "gender": "H",
+        "gender": "Hombre",
         "music_genres": [
             "Pop"
         ],
@@ -156,7 +148,6 @@
             "Tenis"
         ],
         "languages": [
-            "Español",
             "Inglés",
             "Hebreo"
         ]
@@ -165,7 +156,7 @@
         "id": 16,
         "name": "Federico Peitti",
         "age": 20,
-        "gender": "H",
+        "gender": "Hombre",
         "music_genres": [
             "JPop",
             "JRock",
@@ -180,7 +171,6 @@
             "Fútbol"
         ],
         "languages": [
-            "Español",
             "Inglés",
             "Frances",
             "Japonés"
@@ -190,7 +180,7 @@
         "id": 17,
         "name": "Isabel Nuñez",
         "age": 20,
-        "gender": "M",
+        "gender": "Mujer",
         "music_genres": [
             "Rock"
         ],
@@ -199,7 +189,6 @@
             "Fútbol Americano "
         ],
         "languages": [
-            "Español",
             "Inglés "
         ]
     },
@@ -207,7 +196,7 @@
         "id": 18,
         "name": "Ivan Mondrzak",
         "age": 19,
-        "gender": "H",
+        "gender": "Hombre",
         "music_genres": [
             "Variado"
         ],
@@ -216,7 +205,6 @@
             "Básquet"
         ],
         "languages": [
-            "Español",
             "Ingles"
         ]
     },
@@ -224,7 +212,7 @@
         "id": 19,
         "name": "Manuel Matías Milde",
         "age": 21,
-        "gender": "H",
+        "gender": "Hombre",
         "music_genres": [
             "Rock",
             "Jazz"
@@ -234,7 +222,6 @@
         ],
         "languages": [
             "Ingles",
-            "Español",
             "Portugués"
         ]
     },
@@ -242,7 +229,7 @@
         "id": 23,
         "name": "Ezequiel Grinblat",
         "age": 21,
-        "gender": "H",
+        "gender": "Hombre",
         "music_genres": [
             "Rock"
         ],
@@ -250,7 +237,6 @@
             "Fútbol"
         ],
         "languages": [
-            "Español",
             "Inglés"
         ]
     },
@@ -258,7 +244,7 @@
         "id": 24,
         "name": "María Agustina Giménez Costa",
         "age": 21,
-        "gender": "M",
+        "gender": "Mujer",
         "music_genres": [
             "Pop",
             "Rock"
@@ -267,7 +253,6 @@
             "Hockey"
         ],
         "languages": [
-            "Español",
             "Inglés",
             "Italiano"
         ]
@@ -276,7 +261,7 @@
         "id": 25,
         "name": "Valentina Gayo",
         "age": 20,
-        "gender": "M",
+        "gender": "Mujer",
         "music_genres": [
             "Pop"
         ],
@@ -284,7 +269,6 @@
             "Fórmula 1"
         ],
         "languages": [
-            "Español",
             "Inglés",
             "Portugués",
             "Japonés"
@@ -294,7 +278,7 @@
         "id": 26,
         "name": "Gonzalo García Vence",
         "age": 21,
-        "gender": "H",
+        "gender": "Hombre",
         "music_genres": [
             "Techno"
         ],
@@ -303,7 +287,6 @@
             "Tenis"
         ],
         "languages": [
-            "Español",
             "Inglés"
         ]
     },
@@ -311,7 +294,7 @@
         "id": 29,
         "name": "Tomás Curzio",
         "age": 21,
-        "gender": "H",
+        "gender": "Hombre",
         "music_genres": [
             "Folk"
         ],
@@ -319,7 +302,6 @@
             "Fútbol"
         ],
         "languages": [
-            "Español",
             "Inglés"
         ]
     },
@@ -327,7 +309,7 @@
         "id": 30,
         "name": "Juana Copello",
         "age": 26,
-        "gender": "M",
+        "gender": "Mujer",
         "music_genres": [
             "Rock"
         ],
@@ -335,7 +317,6 @@
             "Fútbol"
         ],
         "languages": [
-            "Español",
             "Inglés",
             "Frances"
         ]
@@ -344,7 +325,7 @@
         "id": 31,
         "name": "Camila Cauzzo",
         "age": 21,
-        "gender": "M",
+        "gender": "Mujer",
         "music_genres": [
             "Variado"
         ],
@@ -353,7 +334,6 @@
             "fútbol"
         ],
         "languages": [
-            "Español",
             "Inglés",
             "Italiano"
         ]
@@ -362,7 +342,7 @@
         "id": 36,
         "name": "Carlos Ignacio Araujo",
         "age": 52,
-        "gender": "H",
+        "gender": "Hombre",
         "music_genres": [
             "Jazz",
             "PostPunk"
@@ -371,7 +351,6 @@
             "Fútbol"
         ],
         "languages": [
-            "Español",
             "Inglés",
             "Italiano"
         ]

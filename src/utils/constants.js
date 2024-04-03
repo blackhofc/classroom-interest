@@ -1,6 +1,6 @@
 // colors.js
 const COLORS = {
-    M: {
+    Mujer: {
       background: "#D168B3",
       border: "#D168B3",
       highlight: {
@@ -8,7 +8,7 @@ const COLORS = {
         border: "#C72097",
       },
     },
-    H: {
+    Hombre: {
       background: "#4B7AFF",
       border: "#4B7AFF",
       highlight: {

@@ -1,6 +1,11 @@
 
 import openpyxl, json
 
+GENDERS = {
+    'H': 'Hombre',
+    'M': 'Mujer',
+    'NB': 'No Binario'
+}
 
 def output(data):
     # Write the dictionary to a JSON file
@@ -36,10 +41,10 @@ if __name__ == '__main__':
             'id':           indx,
             'name':         name,
             'age':          age,
-            'gender':       gender,
+            'gender':       GENDERS[gender],
             'music_genres': genres,
             'fav_sports':   sports,
-            'languages':    languages
+            'languages':    [lang for lang in languages if lang !='Español']
         })
         
     output(students)

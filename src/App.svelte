@@ -1,11 +1,12 @@
 <script>
   import { onMount } from "svelte";
   import { Network } from "vis-network";
+  import Select from "svelte-select";
 
   // Components
   import COLORS from "./utils/constants.js";
-  import Select from "svelte-select";
   import PersonCard from "./components/Person.svelte";
+  import RelationCard from "./components/Relation.svelte";
 
   import { groupStudents, filters } from "./utils/filters.js";
 
@@ -13,10 +14,24 @@
   import students from "./students.json";
 
   let selectedNode = null;
+  let selectedNodeRelations = [];
 
   var nodes = [];
 
-  let justValue;
+  let justValue = "class";
+
+  const findMyRelations = (edges, id) => {
+    const relations = edges.reduce((relations, { from, to }) => {
+      if (from === id)
+        relations.push(nodes.find((student) => student.id === to));
+      else if (to === id)
+        relations.push(nodes.find((student) => student.id === from));
+      return relations;
+    }, []);
+    // console.log(`relations of [${id}] ---> ${relations}`);
+    console.log(`--->[${id}] has ${relations.length} relations`);
+    return relations;
+  };
 
   // Load student nodes with its values
   students.forEach((person) => {
@@ -31,7 +46,9 @@
 
   // Draw canvas with current filter selected 'justValue'
   function draw() {
+    console.log("justValue", justValue);
     var edges = groupStudents(students, justValue);
+    selectedNodeRelations = findMyRelations(edges, selectedNode?.id);
 
     // Container to hold the network
     const container = document.getElementById("students-network");
@@ -73,6 +90,7 @@
       const node = nodes.find((n) => n.id === nodeId);
       if (node) {
         selectedNode = node;
+        selectedNodeRelations = findMyRelations(edges, node?.id);
       }
     });
 
@@ -102,6 +120,21 @@
       <div class="sub-title">Student</div>
       <PersonCard {selectedNode} />
     {/if}
+
+    {#if selectedNode && selectedNodeRelations.length > 0}
+      <div class="sub-title">
+        {selectedNodeRelations.length} Students in the same group as {selectedNode.name.split(
+          " "
+        )[0]}
+      </div>
+
+      <div class="relation-cards-container" id="relationCardsContainer">
+        {#each selectedNodeRelations as relation}
+          <RelationCard {justValue} {relation} />
+        {/each}
+      </div>
+    {/if}
+
     <div class="dite-logo">
       <a
         href="https://docs.google.com/spreadsheets/d/1fiIBpUYMtGCTEr7ojjqdm8oesV9ByKjP4-8B0DEJWZg/edit?usp=sharing"
@@ -117,6 +150,7 @@
   </div>
   <form class="form-container">
     <label for="foo" style="color: aliceblue;">Filter</label>
+
     <Select items={filters} bind:justValue on:change={draw} />
   </form>
   <div
@@ -143,7 +177,7 @@
   .form-container {
     position: absolute;
     top: 0;
-    transform: translateX(-155%); /* Move the form back to the left */
+    transform: translateX(-140%); /* Move the form back to the left */
     width: 15vw;
     background-color: transparent; /* Change background color to transparent */
     padding: 10px;
@@ -153,7 +187,7 @@
   .title {
     margin-top: 20px;
     text-decoration: none;
-    font-size: 28px;
+    font-size: 30px;
     font-style: initial;
     background-image: linear-gradient(to right, #e52f89, #57bdba, #f5a800);
     color: transparent;
@@ -167,10 +201,30 @@
     0% {
       background-position: 200% 50%;
     }
-
-    100% {
-      background-position: -100% 50%;
+    50% {
+      background-position: 0% 50%;
     }
+    100% {
+      background-position: -200% 50%;
+    }
+  }
+
+  .relation-cards-container::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar */
+  }
+
+  .relation-cards-container {
+    display: flex;
+    overflow-x: auto; /* Add horizontal scroll if necessary  overflow-x: hidden; to hide */
+    gap: 0px; /* Adjust spacing between cards */
+    padding-top: 5px;
+    padding-bottom: 15px;
+  }
+
+  /* Apply styles directly to the child component's root element */
+  :global(.similar-card) {
+    padding: 10px 15px; /* Vertical padding of 10px, horizontal padding of 20px */
+    flex-shrink: 0; /* Ensure the card does not shrink */
   }
 
   .sub-title {
