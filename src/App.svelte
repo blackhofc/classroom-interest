@@ -9,6 +9,7 @@
   import RelationCard from "./components/Relation.svelte";
 
   import { groupStudents, filters } from "./utils/filters.js";
+  import { detectNetworkStabilization } from "./utils/networkStabilization";
 
   // Import the parsed students data
   import students from "./students.json";
@@ -46,7 +47,6 @@
 
   // Draw canvas with current filter selected 'justValue'
   function draw() {
-    console.log("justValue", justValue);
     var edges = groupStudents(students, justValue);
     selectedNodeRelations = findMyRelations(edges, selectedNode?.id);
 
@@ -84,6 +84,8 @@
     // Create the network
     const network = new Network(container, data, options);
 
+    detectNetworkStabilization(network);
+
     // Add event listener for node click
     network.on("click", function (event) {
       const nodeId = event.nodes[0]; // Get the first selected node
@@ -96,9 +98,7 @@
 
     // Adjust students network on window resize
     window.onresize = function () {
-      setInterval(function () {
-        network.fit();
-      }, 2000);
+      network.fit();
     };
   }
 
